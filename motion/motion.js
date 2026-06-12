@@ -316,6 +316,21 @@
         }
       }, '-=0.3');
     }
+
+    // FAILSAFE — o hero NUNCA pode ficar invisivel. Se o rAF estiver travado
+    // (aba em segundo plano / throttle), o GSAP nao anima e o texto some.
+    // setTimeout dispara mesmo com rAF parado: depois do tempo da animacao,
+    // forca o estado final. Se a animacao ja rodou, isso e um no-op visual.
+    function forceHeroVisible() {
+      try { tl.progress(1); } catch (e) {}
+      if (kicker) kicker.style.opacity = '1';
+      if (sub) { sub.style.opacity = '1'; sub.style.transform = 'none'; }
+      bullets.forEach(function (b) { b.style.opacity = '1'; b.style.transform = 'none'; });
+      cta.forEach(function (c) { c.style.opacity = '1'; c.style.transform = 'none'; c.classList.add('is-lit'); });
+      lines.forEach(function (l) { l.style.transform = 'none'; l.style.willChange = ''; });
+    }
+    setTimeout(forceHeroVisible, 1800);
+    window.addEventListener('load', function () { setTimeout(forceHeroVisible, 1800); }, { passive: true });
   }
 
   /* ----------------------------------------------------------
@@ -338,39 +353,52 @@
       if (d) el.style.setProperty('--reveal-delay', (parseInt(d, 10) || 0) + 'ms');
     });
 
-    var pending = []; // batch por frame pra stagger natural de cards irmãos
-    var flushScheduled = false;
-    function flush() {
-      flushScheduled = false;
-      pending.forEach(function (el, i) {
-        // stagger 80ms entre itens revelados no mesmo frame (cards em grade)
-        var extra = i * 80;
-        var base = parseInt(el.getAttribute('data-reveal-delay') || '0', 10) || 0;
-        el.style.setProperty('--reveal-delay', (base + extra) + 'ms');
-        el.classList.add('is-animating', 'is-revealed');
-        el.addEventListener('transitionend', function onEnd(ev) {
-          if (ev.propertyName !== 'transform') return;
-          el.classList.remove('is-animating');
-          el.style.removeProperty('--reveal-delay');
-          el.removeEventListener('transitionend', onEnd);
-        });
+    function reveal(el, stagger) {
+      if (el.classList.contains('is-revealed')) return;
+      var base = parseInt(el.getAttribute('data-reveal-delay') || '0', 10) || 0;
+      el.style.setProperty('--reveal-delay', (base + (stagger || 0)) + 'ms');
+      el.classList.add('is-animating', 'is-revealed');
+      el.addEventListener('transitionend', function onEnd(ev) {
+        if (ev.propertyName !== 'transform') return;
+        el.classList.remove('is-animating');
+        el.style.removeProperty('--reveal-delay');
+        el.removeEventListener('transitionend', onEnd);
       });
-      pending = [];
     }
 
+    // Sem IntersectionObserver (browser antigo): mostra tudo, sem risco de branco.
+    if (typeof IntersectionObserver === 'undefined') {
+      els.forEach(function (el) { el.classList.add('is-revealed'); });
+      return;
+    }
+
+    // Revela DIRETO no callback do IO (sem rAF/flush — rAF travado nao pode
+    // mais deixar conteudo invisivel). Stagger por indice do batch via CSS delay.
     var io = new IntersectionObserver(function (entries) {
+      var i = 0;
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
-        pending.push(entry.target);
         io.unobserve(entry.target);
+        reveal(entry.target, (i++) * 80); // stagger natural de cards irmaos
       });
-      if (pending.length && !flushScheduled) {
-        flushScheduled = true;
-        requestAnimationFrame(flush);
-      }
     }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
 
     els.forEach(function (el) { io.observe(el); });
+
+    // FAILSAFE — conteudo nunca pode ficar em branco.
+    // Qualquer coisa no/acima do viewport (load em scroll, IO lento) revela ja.
+    function revealVisible() {
+      els.forEach(function (el) {
+        if (el.classList.contains('is-revealed')) return;
+        if (el.getBoundingClientRect().top < window.innerHeight * 0.95) {
+          io.unobserve(el);
+          el.classList.add('is-revealed');
+        }
+      });
+    }
+    revealVisible();
+    window.addEventListener('load', revealVisible, { passive: true });
+    setTimeout(revealVisible, 700);
   }
 
   /* ----------------------------------------------------------
@@ -409,10 +437,31 @@
           onUpdate: function () { render(el, obj.val); },
           onComplete: function () { render(el, target); }
         });
+        // failsafe por counter: se o count-up nao progrediu (rAF travado),
+        // snap pro valor final. setTimeout roda mesmo com rAF parado.
+        setTimeout(function () {
+          if ((parseFloat((el.textContent || '').replace(/\D/g, '')) || 0) < target) render(el, target);
+        }, 2400);
       });
     }, { threshold: 0.4 });
 
     counters.forEach(function (el) { io.observe(el); });
+
+    // FAILSAFE — numero de credibilidade nunca pode ficar travado em "0".
+    // Se o rAF estiver parado, o count-up nao roda; depois de um tempo,
+    // qualquer counter ainda zerado e visivel recebe o valor final.
+    function settleCounters() {
+      counters.forEach(function (el) {
+        var target = parseFloat(el.getAttribute('data-target') || '0');
+        var cur = parseFloat((el.textContent || '').replace(/\D/g, '')) || 0;
+        if (cur < target && el.getBoundingClientRect().top < window.innerHeight) {
+          io.unobserve(el);
+          render(el, target);
+        }
+      });
+    }
+    window.addEventListener('load', function () { setTimeout(settleCounters, 2600); }, { passive: true });
+    setTimeout(settleCounters, 2600);
   }
 
   /* ----------------------------------------------------------

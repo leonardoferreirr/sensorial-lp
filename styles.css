@@ -180,18 +180,21 @@ body::before {
 }
 .hero-title .accent { color: var(--accent); }
 .hero-sub { font-size: var(--fs-lead); color: var(--muted); max-width: 46ch; margin-bottom: 1.4rem; }
-.hero-bullets {
-  display: flex; flex-wrap: wrap; gap: 0.6rem 0.7rem;
-  margin-bottom: 1.7rem;
+.hero-meta {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: 0.4rem 1.4rem;
+  margin-bottom: 1.8rem;
 }
-.hero-bullets li {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  font-size: var(--fs-small); color: var(--fg);
-  padding: 0.5rem 0.95rem;
-  border: 1px solid var(--line); border-radius: var(--r-pill);
-  background: color-mix(in srgb, var(--surface) 45%, transparent);
+.hero-meta span {
+  position: relative;
+  font-size: var(--fs-small); color: var(--muted);
 }
-.hero-bullets svg { width: 0.95em; height: 0.95em; color: var(--teal); flex-shrink: 0; }
+.hero-meta span:not(:last-child)::after {
+  content: ""; position: absolute; right: -0.75rem; top: 50%;
+  width: 3px; height: 3px; border-radius: 50%;
+  background: color-mix(in srgb, var(--accent) 65%, transparent);
+  transform: translateY(-50%);
+}
 .hero-cta-row { display: flex; flex-wrap: wrap; gap: 0.8rem; }
 
 .hero-media { position: relative; }
@@ -281,41 +284,54 @@ body::before {
 /* ============================================================
    BENEFÍCIOS — grade de 6 cards
    ============================================================ */
-.benef-head { margin-bottom: clamp(2.5rem,5vw,4rem); max-width: 40ch; }
-.benef-head .lead { margin-top: 1rem; }
+/* 2 colunas: titulo sticky a esquerda, cards empilham a direita (padrao P1) */
+.benef-wrap {
+  display: grid; grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(2rem, 5vw, 5rem); align-items: start;
+}
+.benef-head {
+  position: sticky; top: 16vh; align-self: start;
+  max-width: 30ch;
+}
+.benef-head .lead { margin-top: 1.2rem; }
 
 /* sticky stack: cards empilham um sobre o outro no scroll (CSS puro, sem rAF) */
-.benef-stack { display: flex; flex-direction: column; gap: clamp(1.5rem, 3vw, 2.5rem); }
+.benef-stack { display: flex; flex-direction: column; gap: 0; padding-bottom: 14vh; }
 .benef-card {
   position: sticky;
-  top: calc(14vh + var(--i) * 14px);
+  top: calc(16vh + var(--i) * 16px);
+  margin-bottom: clamp(1.2rem, 2.5vw, 2rem);
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
-  padding: clamp(1.8rem, 3.2vw, 2.8rem) clamp(1.8rem, 3.5vw, 3.2rem);
-  display: grid; grid-template-columns: auto 1fr; gap: clamp(1.5rem, 4vw, 3.5rem);
+  padding: clamp(1.6rem, 2.6vw, 2.4rem);
+  display: grid; grid-template-columns: auto 1fr; gap: clamp(1.2rem, 2.5vw, 2rem);
   align-items: center;
-  box-shadow: 0 -8px 40px -20px rgba(0,0,0,0.7);
+  box-shadow: 0 24px 48px -20px rgba(0,0,0,0.7);
 }
-.benef-card .bc-left { display: flex; align-items: center; gap: 1.2rem; }
+.benef-card .bc-left { display: flex; flex-direction: column; align-items: center; gap: 0.9rem; }
 .benef-card .bc-num {
   font-family: var(--display); font-weight: 700;
-  font-size: clamp(2.2rem, 4vw, 3.4rem); line-height: 1;
+  font-size: clamp(2rem, 3.4vw, 3rem); line-height: 1;
   color: color-mix(in srgb, var(--accent) 80%, var(--fg));
   font-variant-numeric: tabular-nums;
 }
 .benef-card .bc-icon {
-  width: 56px; height: 56px; border-radius: 14px;
+  width: 52px; height: 52px; border-radius: 14px;
   display: grid; place-items: center;
   background: color-mix(in srgb, var(--teal) 14%, transparent);
   color: var(--teal); flex-shrink: 0;
 }
-.benef-card .bc-icon svg { width: 26px; height: 26px; }
-.benef-card h3 { font-family: var(--display); font-size: var(--fs-h3); font-weight: 600; line-height: 1.12; margin-bottom: 0.6rem; }
-.benef-card p { color: var(--muted); font-size: var(--fs-body); max-width: 60ch; }
-@media (max-width: 680px){
-  .benef-card { grid-template-columns: 1fr; gap: 1.2rem; top: calc(8vh + var(--i) * 10px); }
-  .benef-card .bc-left { gap: 1rem; }
+.benef-card .bc-icon svg { width: 24px; height: 24px; }
+.benef-card h3 { font-family: var(--display); font-size: var(--fs-h3); font-weight: 600; line-height: 1.12; margin-bottom: 0.5rem; }
+.benef-card p { color: var(--muted); font-size: var(--fs-body); }
+@media (max-width: 900px){
+  .benef-wrap { grid-template-columns: 1fr; gap: 2rem; }
+  .benef-head { position: static; max-width: 100%; margin-bottom: 1rem; }
+}
+@media (max-width: 600px){
+  .benef-card { grid-template-columns: 1fr; gap: 1rem; top: calc(9vh + var(--i) * 10px); }
+  .benef-card .bc-left { flex-direction: row; }
 }
 
 /* ============================================================
@@ -336,12 +352,19 @@ body::before {
 
 .marquee-caption { font-size: var(--fs-small); color: var(--muted); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 2.2rem; }
 #client-marquee { padding-block: 0.5rem; }
-#client-marquee .marquee-track { gap: clamp(3rem, 7vw, 6rem); }
+#client-marquee .marquee-track { gap: clamp(1.4rem, 3vw, 2.4rem); }
 #client-marquee .marquee-track img {
-  height: clamp(48px, 6.5vw, 74px); width: auto; opacity: 0.85;
-  transition: opacity 0.3s, transform 0.3s var(--ease-out);
+  height: clamp(40px, 5vw, 54px); width: auto;
+  padding: clamp(12px, 1.4vw, 18px) clamp(18px, 2.2vw, 28px);
+  background: #fff; border-radius: 14px;
+  box-sizing: content-box;
+  opacity: 0.96;
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
 }
-#client-marquee .marquee-track img:hover { opacity: 1; transform: scale(1.06); }
+#client-marquee .marquee-track img:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px -12px rgba(0,0,0,0.5);
+}
 
 /* ============================================================
    CASOS / RESULTADOS
@@ -425,13 +448,9 @@ body::before {
 }
 
 .plans-support {
-  max-width: 920px; margin: clamp(1.5rem,3vw,2.2rem) auto 0;
-  display: flex; flex-wrap: wrap; gap: 1.2rem 2rem; justify-content: center;
-  padding: 1.4rem 1.6rem; border: 1px dashed var(--line); border-radius: var(--r-md);
-  color: var(--muted); font-size: var(--fs-small);
+  max-width: 620px; margin: clamp(1.4rem,3vw,2rem) auto 0;
+  text-align: center; color: var(--muted); font-size: var(--fs-small); line-height: 1.6;
 }
-.plans-support span { display: inline-flex; align-items: center; gap: 0.5rem; }
-.plans-support svg { width: 1.1em; height: 1.1em; color: var(--teal); }
 
 /* Licenças app — 3 cards secundários */
 .plans-app-head { text-align: center; margin: clamp(4rem,8vw,7rem) auto clamp(2rem,4vw,3rem); }

@@ -22,12 +22,14 @@ html.lenis, html.lenis body { height: auto; }
    SVG gerado via JS. Aqui só posicionamento e custo de pintura.
    ------------------------------------------------------------ */
 #neural-canvas {
-  position: absolute;
+  position: fixed;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;          /* fundo infinito: atras de todo o conteudo, segue a pagina inteira */
   overflow: hidden;
+  pointer-events: none;
+  opacity: 0.9;
   contain: strict; /* isola pintura do SVG vivo */
 }
 #neural-canvas svg {

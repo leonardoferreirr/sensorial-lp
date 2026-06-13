@@ -18,6 +18,9 @@
 <!-- progress -->
 <div id="progress" aria-hidden="true"></div>
 
+<!-- rede neural — fundo infinito da pagina inteira (fixed) -->
+<div id="neural-canvas" aria-hidden="true"></div>
+
 <!-- ============== NAV ============== -->
 <header id="site-nav">
   <div class="wrap nav-inner">
@@ -40,10 +43,8 @@
 
 <!-- ============== HERO ============== -->
 <section class="hero section" id="topo" data-hero>
-  <div id="neural-canvas"></div>
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <span class="hero-kicker" data-hero-kicker><span class="dot"></span> Tecnologia desenvolvida por neurocientistas</span>
       <h1 class="hero-title">
         <span class="hero-line"><span class="line-inner">Aumente o faturamento</span></span>
         <span class="hero-line"><span class="line-inner">da sua clínica com</span></span>
@@ -80,7 +81,6 @@
 <section class="section" id="problema">
   <div class="wrap problema-grid">
     <div data-reveal>
-      <span class="eyebrow-num">01 / O contexto</span>
       <h2 class="h2">Seu trabalho vai além do atendimento</h2>
     </div>
     <div>
@@ -99,7 +99,6 @@
 <!-- ============== VIRADA DE CHAVE ============== -->
 <section class="section virada" id="virada">
   <div class="wrap">
-    <span class="eyebrow-num" style="justify-content:center" data-reveal>02 / A virada de chave</span>
     <h2 class="h2" data-reveal>Você pode escalar seu cuidado sem perder qualidade clínica</h2>
     <p class="lead" data-reveal>Com o <span class="brandword">Sensorial Moove</span>, você transforma as sessões do paciente em um programa contínuo de cuidado: atendimento presencial de forma tecnológica, interativa e estruturada, com possibilidade de extensão remota.</p>
   </div>
@@ -109,7 +108,6 @@
 <section class="section" id="como-funciona">
   <div class="wrap">
     <div class="howto-head">
-      <span class="eyebrow-num" data-reveal>03 / Como funciona</span>
       <h2 class="h2" data-reveal>Uma plataforma completa para avaliação, intervenção e acompanhamento</h2>
     </div>
     <div class="compare">
@@ -150,49 +148,37 @@
   </div>
 </section>
 
-<!-- ============== BENEFÍCIOS ============== -->
+<!-- ============== BENEFÍCIOS — sticky stack ============== -->
 <section class="section" id="beneficios">
-  <div class="wrap">
-    <div class="benef-head">
-      <span class="eyebrow-num" data-reveal>04 / Benefícios para o profissional</span>
-      <h2 class="h2" data-reveal>Mais capacidade clínica, menos tempo operacional</h2>
+  <div class="wrap benef-wrap">
+    <div class="benef-head" data-reveal>
+      <h2 class="h2">Mais capacidade clínica, menos tempo operacional</h2>
+      <p class="lead">Seis frentes em que a plataforma trabalha junto com você, do diagnóstico à recorrência.</p>
     </div>
-    <div class="benef-grid">
-      <article class="benef-card" data-card data-reveal>
-        <span class="bc-num">01</span>
-        <div class="bc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3>Avaliação estruturada</h3>
-        <p>Realize avaliações cognitivas e identifique com precisão as áreas que precisam ser trabalhadas, elevando a qualidade do cuidado com decisões baseadas em dados.</p>
+    <div class="benef-stack">
+      <article class="benef-card" data-card style="--i:0">
+        <div class="bc-left"><span class="bc-num">01</span><div class="bc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="bc-text"><h3>Avaliação estruturada</h3><p>Realize avaliações cognitivas e identifique com precisão as áreas que precisam ser trabalhadas, elevando a qualidade do cuidado com decisões baseadas em dados.</p></div>
       </article>
-      <article class="benef-card" data-card data-reveal>
-        <span class="bc-num">02</span>
-        <div class="bc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9h18M9 21V9M4 4h16a1 1 0 011 1v14a1 1 0 01-1 1H4a1 1 0 01-1-1V5a1 1 0 011-1z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3>Planejamento inteligente</h3>
-        <p>Organize intervenções e sessões com atividades direcionadas, reduza o tempo operacional e aumente sua capacidade de atender mais pacientes.</p>
+      <article class="benef-card" data-card style="--i:1">
+        <div class="bc-left"><span class="bc-num">02</span><div class="bc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9h18M9 21V9M4 4h16a1 1 0 011 1v14a1 1 0 01-1 1H4a1 1 0 01-1-1V5a1 1 0 011-1z" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="bc-text"><h3>Planejamento inteligente</h3><p>Organize intervenções e sessões com atividades direcionadas, reduza o tempo operacional e aumente sua capacidade de atender mais pacientes.</p></div>
       </article>
-      <article class="benef-card" data-card data-reveal>
-        <span class="bc-num">03</span>
-        <div class="bc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18M7 14l4-4 3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3>Dados e evolução</h3>
-        <p>Acompanhe o desempenho com indicadores claros, gere relatórios mais completos e aumente o engajamento e a permanência dos pacientes.</p>
+      <article class="benef-card" data-card style="--i:2">
+        <div class="bc-left"><span class="bc-num">03</span><div class="bc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18M7 14l4-4 3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="bc-text"><h3>Dados e evolução</h3><p>Acompanhe o desempenho com indicadores claros, gere relatórios mais completos e aumente o engajamento e a permanência dos pacientes.</p></div>
       </article>
-      <article class="benef-card" data-card data-reveal>
-        <span class="bc-num">04</span>
-        <div class="bc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3>Otimização do tempo</h3>
-        <p>Reduza o tempo com organização e análise, libere sua agenda e torne seu atendimento mais escalável sem perder qualidade.</p>
+      <article class="benef-card" data-card style="--i:3">
+        <div class="bc-left"><span class="bc-num">04</span><div class="bc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="bc-text"><h3>Otimização do tempo</h3><p>Reduza o tempo com organização e análise, libere sua agenda e torne seu atendimento mais escalável sem perder qualidade.</p></div>
       </article>
-      <article class="benef-card" data-card data-reveal>
-        <span class="bc-num">05</span>
-        <div class="bc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3>Aumento e retenção de pacientes</h3>
-        <p>Ofereça um acompanhamento mais completo e contínuo, aumente o engajamento e fortaleça a permanência dos pacientes na sua clínica.</p>
+      <article class="benef-card" data-card style="--i:4">
+        <div class="bc-left"><span class="bc-num">05</span><div class="bc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="bc-text"><h3>Aumento e retenção de pacientes</h3><p>Ofereça um acompanhamento mais completo e contínuo, aumente o engajamento e fortaleça a permanência dos pacientes na sua clínica.</p></div>
       </article>
-      <article class="benef-card" data-card data-reveal>
-        <span class="bc-num">06</span>
-        <div class="bc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3>Nova fonte de receita</h3>
-        <p>Estruture programas contínuos e amplie sua oferta de serviços, gerando novas oportunidades de receita com acompanhamento recorrente.</p>
+      <article class="benef-card" data-card style="--i:5">
+        <div class="bc-left"><span class="bc-num">06</span><div class="bc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="bc-text"><h3>Nova fonte de receita</h3><p>Estruture programas contínuos e amplie sua oferta de serviços, gerando novas oportunidades de receita com acompanhamento recorrente.</p></div>
       </article>
     </div>
   </div>
@@ -201,7 +187,6 @@
 <!-- ============== PROVA / AUTORIDADE ============== -->
 <section class="section prova" id="prova">
   <div class="wrap">
-    <span class="eyebrow-num" style="justify-content:center" data-reveal>05 / Prova e autoridade</span>
     <h2 class="h2" data-reveal>Uma tecnologia desenvolvida por neurocientistas</h2>
     <div class="stats">
       <div class="stat" data-reveal>
@@ -245,7 +230,6 @@
 <section class="section" id="resultados">
   <div class="wrap">
     <div class="casos-head">
-      <span class="eyebrow-num" data-reveal>06 / Resultados</span>
       <h2 class="h2" data-reveal>Resultados baseados em ciência</h2>
     </div>
     <div class="casos-grid">
@@ -277,24 +261,22 @@
   </div>
 </section>
 
-<!-- ============== PARA QUEM É ============== -->
-<section class="section" id="para-quem">
-  <div class="wrap quem">
-    <div>
-      <span class="eyebrow-num" data-reveal>07 / Para quem é</span>
-      <h2 class="h2" data-reveal>Para profissionais que trabalham com estimulação cognitiva e querem escalar o atendimento com qualidade</h2>
+<!-- ============== PARA QUEM É — marquee 2 linhas ============== -->
+<section class="section quem-sec" id="para-quem">
+  <div class="wrap quem-head">
+    <h2 class="h2" data-reveal>Para profissionais que trabalham com estimulação cognitiva e querem escalar o atendimento com qualidade</h2>
+  </div>
+  <div class="spec-marquee" aria-hidden="true">
+    <div class="spec-track">
+      <span class="spec-pill">Neurologia</span><span class="spec-pill">Medicina Integrativa</span><span class="spec-pill">Geriatria</span><span class="spec-pill">Gerontologia</span><span class="spec-pill">Psicologia</span>
+      <span class="spec-pill">Neurologia</span><span class="spec-pill">Medicina Integrativa</span><span class="spec-pill">Geriatria</span><span class="spec-pill">Gerontologia</span><span class="spec-pill">Psicologia</span>
     </div>
-    <ul class="spec-grid">
-      <li data-reveal>Neurologia</li>
-      <li data-reveal>Medicina Integrativa</li>
-      <li data-reveal>Geriatria</li>
-      <li data-reveal>Gerontologia</li>
-      <li data-reveal>Psicologia</li>
-      <li data-reveal>Neuropsicologia</li>
-      <li data-reveal>Terapia Ocupacional</li>
-      <li data-reveal>Reabilitação</li>
-      <li data-reveal>Clínicas multidisciplinares</li>
-    </ul>
+  </div>
+  <div class="spec-marquee reverse" aria-hidden="true">
+    <div class="spec-track">
+      <span class="spec-pill">Neuropsicologia</span><span class="spec-pill">Terapia Ocupacional</span><span class="spec-pill">Reabilitação</span><span class="spec-pill">Clínicas multidisciplinares</span>
+      <span class="spec-pill">Neuropsicologia</span><span class="spec-pill">Terapia Ocupacional</span><span class="spec-pill">Reabilitação</span><span class="spec-pill">Clínicas multidisciplinares</span>
+    </div>
   </div>
 </section>
 
@@ -311,12 +293,10 @@
 <section class="section" id="planos">
   <div class="wrap">
     <div class="planos-head">
-      <span class="eyebrow-num" style="justify-content:center" data-reveal>08 / Planos</span>
       <h2 class="h2" data-reveal>Aplique no seu espaço</h2>
       <p class="lead" data-reveal>Uma solução pensada para clínicas que desejam elevar a experiência presencial.</p>
     </div>
 
-    <!-- TRAINER / TRAINER PRO -->
     <div class="plans-clinic">
       <article class="plan" data-plan data-reveal>
         <span class="plan-tag">Para tablet</span>
@@ -333,7 +313,7 @@
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg> 1 usuário (apenas tablet)</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg> Até 15 pacientes</li>
         </ul>
-        <a class="btn btn--ghost" href="https://wa.me/5511940226573?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Sensorial%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20valores%20da%20implanta%C3%A7%C3%A3o%20para%20o%20TRAINER%20e%20TRAINER%20PRO." target="_blank" rel="noopener">Consultar valor da implantação</a>
+        <a class="btn btn--ghost" href="https://wa.me/5511940226573?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Sensorial%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20valores%20da%20implanta%C3%A7%C3%A3o%20para%20o%20TRAINER%20e%20TRAINER%20PRO." target="_blank" rel="noopener">Consultar implantação</a>
       </article>
 
       <article class="plan plan--featured" data-plan data-reveal>
@@ -352,7 +332,7 @@
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg> 1 usuário + usuário extra para tablet</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg> Pacientes ilimitados</li>
         </ul>
-        <a class="btn btn--primary" href="https://wa.me/5511940226573?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Sensorial%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20valores%20da%20implanta%C3%A7%C3%A3o%20para%20o%20TRAINER%20e%20TRAINER%20PRO." target="_blank" rel="noopener">Consultar valor da implantação</a>
+        <a class="btn btn--primary" href="https://wa.me/5511940226573?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Sensorial%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20valores%20da%20implanta%C3%A7%C3%A3o%20para%20o%20TRAINER%20e%20TRAINER%20PRO." target="_blank" rel="noopener">Consultar implantação</a>
       </article>
     </div>
 
@@ -362,7 +342,6 @@
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg> Apoio na criação de protocolos</span>
     </div>
 
-    <!-- LICENÇAS APP -->
     <div class="plans-app-head">
       <h2 class="h2" data-reveal>Planos de assinatura do Sensorial Moove</h2>
       <p class="lead" style="margin:1rem auto 0" data-reveal>Estruture, acompanhe e escale seu atendimento além do consultório.</p>
@@ -371,23 +350,23 @@
       <article class="app-plan" data-reveal>
         <div class="ap-licenses">5 licenças</div>
         <div class="ap-ideal">Ideal para começar</div>
-        <div class="ap-price">R$ 216 <small style="font-size:0.6em;color:var(--muted)">/mês no plano anual</small></div>
-        <div class="ap-alt">ou R$ 259/mês no plano mensal</div>
+        <div class="ap-price">R$ 216 <small>/mês anual</small></div>
+        <div class="ap-alt">ou R$ 259/mês no mensal</div>
         <div class="ap-per">R$ 43,20 por paciente/mês</div>
       </article>
       <article class="app-plan" data-reveal>
         <div class="ap-licenses">12 licenças</div>
         <div class="ap-ideal">Para clínicas em crescimento</div>
-        <div class="ap-price">R$ 272 <small style="font-size:0.6em;color:var(--muted)">/mês no plano anual</small></div>
-        <div class="ap-alt">ou R$ 327/mês no plano mensal</div>
+        <div class="ap-price">R$ 272 <small>/mês anual</small></div>
+        <div class="ap-alt">ou R$ 327/mês no mensal</div>
         <div class="ap-per">R$ 22,67 por paciente/mês</div>
       </article>
-      <article class="app-plan plan--featured" data-plan data-reveal style="position:relative">
+      <article class="app-plan plan--featured" data-plan data-reveal>
         <span class="plan-badge">Em destaque</span>
         <div class="ap-licenses">30 licenças</div>
         <div class="ap-ideal">Para escalar atendimento</div>
-        <div class="ap-price">R$ 519 <small style="font-size:0.6em;color:var(--muted)">/mês no plano anual</small></div>
-        <div class="ap-alt">ou R$ 623/mês no plano mensal</div>
+        <div class="ap-price">R$ 519 <small>/mês anual</small></div>
+        <div class="ap-alt">ou R$ 623/mês no mensal</div>
         <div class="ap-per">R$ 17,30 por paciente/mês</div>
       </article>
     </div>
@@ -411,7 +390,6 @@
     <div class="cta-final">
       <div class="cta-grid">
         <div class="cta-copy">
-          <span class="eyebrow-num" data-reveal>09 / Vamos conversar</span>
           <h2 class="h2" data-reveal>Transforme sua rotina clínica com mais interatividade e tecnologia</h2>
           <div class="cta-btn-row" data-reveal>
             <a class="btn btn--primary" href="https://wa.me/5511940226573?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Sensorial%20e%20quero%20implementar%20a%20plataforma%20na%20minha%20cl%C3%ADnica." target="_blank" rel="noopener">Quero implementar</a>
@@ -423,7 +401,7 @@
           </p>
         </div>
 
-        <form class="lead-form" id="form" novalidate>
+        <form class="lead-form" id="form" novalidate data-reveal>
           <div class="fg-row">
             <label>Nome <span class="req">*</span>
               <input type="text" name="nome" required autocomplete="name" placeholder="Seu nome">
@@ -432,47 +410,32 @@
               <input type="tel" name="whatsapp" required autocomplete="tel" placeholder="(11) 90000-0000">
             </label>
           </div>
-          <label>Email <span class="req">*</span>
-            <input type="email" name="email" required autocomplete="email" placeholder="voce@clinica.com.br">
-          </label>
           <div class="fg-row">
+            <label>Email <span class="req">*</span>
+              <input type="email" name="email" required autocomplete="email" placeholder="voce@clinica.com.br">
+            </label>
             <label>Profissão
               <input type="text" name="profissao" placeholder="Ex: Neuropsicólogo(a)">
             </label>
+          </div>
+          <div class="fg-row">
             <label>Tipo de clínica
               <input type="text" name="tipo_clinica" placeholder="Ex: Reabilitação">
             </label>
-          </div>
-          <div class="fg-row">
-            <label>Nº de pacientes/mês
+            <label>Pacientes/mês
               <input type="text" name="pacientes_mes" placeholder="Ex: 40">
             </label>
-            <label>Já trabalha com estimulação cognitiva?
-              <select name="ja_trabalha">
-                <option value="">Selecione</option>
-                <option value="Sim">Sim</option>
-                <option value="Não">Não</option>
-              </select>
-            </label>
-          </div>
-          <div class="fg-block">
-            <span class="fieldset-label">Como realiza hoje?</span>
-            <div class="chips">
-              <label class="chip"><input type="radio" name="como_realiza" value="Manual"><span>Manual</span></label>
-              <label class="chip"><input type="radio" name="como_realiza" value="Digital"><span>Digital</span></label>
-              <label class="chip"><input type="radio" name="como_realiza" value="Não estruturado"><span>Não estruturado</span></label>
-            </div>
           </div>
           <div class="fg-block">
             <span class="fieldset-label">Seu interesse</span>
             <div class="chips">
-              <label class="chip"><input type="radio" name="interesse" value="Implementar na minha clínica"><span>Implementar na clínica</span></label>
+              <label class="chip"><input type="radio" name="interesse" value="Implementar na minha clínica"><span>Implementar</span></label>
               <label class="chip"><input type="radio" name="interesse" value="Entender melhor sobre o produto"><span>Entender o produto</span></label>
               <label class="chip"><input type="radio" name="interesse" value="Receber orçamento personalizado"><span>Receber orçamento</span></label>
             </div>
           </div>
           <label>Mensagem
-            <textarea name="mensagem" placeholder="Conte brevemente o que você precisa."></textarea>
+            <textarea name="mensagem" rows="2" placeholder="Conte brevemente o que você precisa."></textarea>
           </label>
           <button type="submit" class="btn btn--primary form-submit">Enviar e receber contato</button>
           <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
@@ -515,12 +478,10 @@
   </div>
 </footer>
 
-<!-- WhatsApp float -->
 <a class="wa-float" href="https://wa.me/5511940226573?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Sensorial." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1112 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7.9-.1.1-.3.2-.5.1-1.3-.6-2.1-1.1-3-2.6-.2-.3.2-.3.5-1 .1-.1 0-.3 0-.4-.1-.1-.5-1.2-.7-1.7-.2-.4-.3-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.7.7-.9 1.6-.5 2.6.5 1.3 1.4 2.5 2.7 3.4 1.6 1.2 2.9 1.4 3.9 1.2.7-.1 1.4-.6 1.6-1.2.2-.5.2-1 .1-1.1z"/></svg>
 </a>
 
-<!-- ============== SCRIPTS ============== -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>

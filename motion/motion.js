@@ -469,14 +469,18 @@
      (animação roda em CSS; translateX -50% emenda exato)
      ---------------------------------------------------------- */
   function initMarquees() {
-    ['#client-marquee .marquee-track', '#type-marquee .type-track'].forEach(function (sel) {
-      var track = document.querySelector(sel);
-      if (!track) return;
+    // querySelectorAll: pega os 2 spec-tracks (linhas opostas) tambem
+    var tracks = [];
+    ['#client-marquee .marquee-track', '#type-marquee .type-track', '.spec-track'].forEach(function (sel) {
+      Array.prototype.forEach.call(document.querySelectorAll(sel), function (t) { tracks.push(t); });
+    });
+    tracks.forEach(function (track) {
       var original = track.innerHTML;
-      // garante largura >= 2x o container, sempre em nº PAR de cópias
+      // duplica ate a faixa ter >= 2x a largura do container (senao abre vazio no loop),
+      // sempre em nº PAR de copias pra -50% emendar exato
       var container = track.parentElement;
       var copies = 1;
-      while (track.scrollWidth < container.clientWidth * 2 && copies < 8) {
+      while (track.scrollWidth < container.clientWidth * 2 && copies < 10) {
         track.innerHTML += original;
         copies++;
       }

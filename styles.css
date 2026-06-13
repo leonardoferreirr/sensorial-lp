@@ -392,12 +392,12 @@ body::before {
 }
 .spec-marquee + .spec-marquee { margin-top: clamp(0.8rem, 1.6vw, 1.2rem); }
 .spec-track {
-  display: inline-flex; align-items: center; gap: clamp(0.8rem, 1.6vw, 1.2rem);
+  display: inline-flex; align-items: center; gap: 0;
   width: max-content; white-space: nowrap;
-  animation: marqueeScroll 34s linear infinite;
+  animation: marqueeScroll 38s linear infinite;
   will-change: transform;
 }
-.spec-marquee.reverse .spec-track { animation-direction: reverse; animation-duration: 40s; }
+.spec-marquee.reverse .spec-track { animation-direction: reverse; animation-duration: 44s; }
 .spec-marquee:hover .spec-track { animation-play-state: paused; }
 .spec-pill {
   font-family: var(--display); font-weight: 500;
@@ -405,6 +405,8 @@ body::before {
   padding: 0.7rem 1.6rem; border-radius: var(--r-pill);
   border: 1px solid var(--line); color: var(--fg);
   background: color-mix(in srgb, var(--surface) 55%, transparent);
+  margin-right: clamp(0.8rem, 1.6vw, 1.2rem); /* espacamento por margem = loop sem emenda visivel */
+  flex-shrink: 0;
 }
 .spec-pill:nth-child(odd) { border-color: color-mix(in srgb, var(--accent) 30%, transparent); color: var(--accent); }
 @media (prefers-reduced-motion: reduce){ .spec-track{ animation: none !important; } }

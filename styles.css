@@ -205,6 +205,8 @@ body::before {
   aspect-ratio: 3/4;
 }
 .hero-media .frame img { width: 100%; height: 100%; object-fit: cover; }
+.hero-media .frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.compare-card .cc-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
 .hero-media .frame::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(180deg, transparent 50%, color-mix(in srgb, var(--bg) 70%, transparent));
